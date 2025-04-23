@@ -6,81 +6,80 @@
     <title>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</title>
     <style>
         body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #fce4ec);
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: white;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    border: 1px solid #ddd;
-}
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            border: 1px solid #ddd;
+        }
 
-h1 {
-    text-align: center;
-    color: #5c6bc0;
-    font-size: 26px;
-    margin-bottom: 30px;
-}
+        h1 {
+            text-align: center;
+            color: #5c6bc0;
+            font-size: 26px;
+            margin-bottom: 30px;
+        }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-label {
-    font-weight: bold;
-    color: #333;
-}
+        label {
+            font-weight: bold;
+            color: #333;
+        }
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="time"],
-input[type="file"],
-select,
-textarea {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: 0.3s ease;
-    margin-bottom: 4px;
-}
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        input[type="file"],
+        select,
+        textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: 0.3s ease;
+            margin-bottom: 4px;
+        }
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #90caf9;
-    outline: none;
-    background-color: #fff;
-}
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #90caf9;
+            outline: none;
+            background-color: #fff;
+        }
 
-button {
-    padding: 12px;
-    border: none;
-    background-color: #64b5f6;
-    color: white;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        button {
+            padding: 12px;
+            border: none;
+            background-color: #64b5f6;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-button:hover {
-    background-color: #42a5f5;
-}
-
+        button:hover {
+            background-color: #42a5f5;
+        }
     </style>
 </head>
 <body>
@@ -1256,103 +1255,86 @@ function toggleOtherAdviceFields() {
 <input type="text" id="survey_leader_phone" name="entry.422090311" >
 
 <!-- ส่วนที่ 10 ภาพประกอบที่จำเป็น -->
-<h3>ส่วนที่ 10 ภาพประกอบที่จำเป็น</h3>
-<form id="uploadForm">
-  <label>รูปภาพที่ 1</label>
-  <input type="file" id="image_1" ><br>
-  <label>รูปภาพที่ 2</label>
-  <input type="file" id="image_2" ><br>
-  <label>รูปภาพที่ 3</label>
-  <input type="file" id="image_3" ><br>
-  <label>รูปภาพที่ 4</label>
-  <input type="file" id="image_4" ><br>
-  <label>รูปภาพที่ 5</label>
-  <input type="file" id="image_5" ><br>
-  <label>รูปภาพที่ 6</label>
-  <input type="file" id="image_6" ><br><br>
+ <h3>ส่วนที่ 10 ภาพประกอบที่จำเป็น</h3>
+            <form id="uploadForm">
+                <label>รูปภาพที่ 1</label>
+                <input type="file" id="image_1" required><br>
+                <label>รูปภาพที่ 2</label>
+                <input type="file" id="image_2" required><br>
+                <label>รูปภาพที่ 3</label>
+                <input type="file" id="image_3" required><br>
+                <label>รูปภาพที่ 4</label>
+                <input type="file" id="image_4" required><br>
+                <label>รูปภาพที่ 5</label>
+                <input type="file" id="image_5" required><br>
+                <label>รูปภาพที่ 6</label>
+                <input type="file" id="image_6" required><br><br>
 
-<script>
-const formUrl = "https://drive.google.com/drive/folders/1-79dumhmkTTssR4-7Xb1ZFBZ-tTuD1Zj";
-const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
-
-// Map ช่อง entry ของแต่ละภาพ
-const entryMap = {
-  image_1: "entry.1414879840",
-  image_2: "entry.1467943237",
-  image_3: "entry.1167757169",
-  image_4: "entry.623998774",
-  image_5: "entry.2126765965",
-  image_6: "entry.1719929121"
-};
-
-document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const imageLinks = {};
-
-  // อัปโหลดภาพทั้งหมด
-  for (let key in entryMap) {
-    const fileInput = document.getElementById(key);
-    const file = fileInput.files[0];
-    if (!file) {
-      alert(`กรุณาเลือกรูป ${key}`);
-      return;
-    }
-
-    const reader = new FileReader();
-    await new Promise((resolve) => {
-      reader.onload = async function () {
-        const base64 = reader.result.split(",")[1];
-        const uploadData = new URLSearchParams();
-        uploadData.append("image", base64);
-        uploadData.append("name", file.name);
-
-        const res = await fetch(webAppUrl, {
-          method: "POST",
-          body: uploadData,
-        });
-        const imageUrl = await res.text();
-        imageLinks[key] = imageUrl;
-        resolve();
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // ส่งลิงก์ทั้งหมดเข้า Google Form
-  const formData = new URLSearchParams();
-  for (let key in entryMap) {
-    formData.append(entryMap[key], imageLinks[key]);
-  }
-
-  await fetch(formUrl, {
-    method: "POST",
-    body: formData,
-  });
-
-<button type="submit">ส่งข้อมูล</button>
-</form>
+                <button type="submit">ส่งข้อมูล</button>
+            </form>
+        </form>
     </div>
 
     <script>
-      document.getElementById("surveyForm").addEventListener("submit", function(e) {
-        e.preventDefault();  // ป้องกันการส่งฟอร์มแบบปกติ
+        const formUrl = "https://drive.google.com/drive/folders/1-79dumhmkTTssR4-7Xb1ZFBZ-tTuD1Zj";
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
 
-        const form = e.target;
-        const formData = new FormData(form);
+        const entryMap = {
+            image_1: "entry.1414879840",
+            image_2: "entry.1467943237",
+            image_3: "entry.1167757169",
+            image_4: "entry.623998774",
+            image_5: "entry.2126765965",
+            image_6: "entry.1719929121"
+        };
 
-        // ส่งข้อมูลผ่าน Fetch API
-        fetch(form.action, {
-          method: form.method,
-          body: formData,
-          mode: 'no-cors'
-        }).then(() => {
-          alert("ส่งข้อมูลเรียบร้อยแล้ว!");
-          form.reset();  // ล้างฟอร์มหากต้องการ
-        }).catch(() => {
-          alert("มีบางอย่างผิดพลาด ลองใหม่อีกครั้งนะ");
+        document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const imageLinks = {};
+
+            // อัปโหลดภาพทั้งหมด
+            for (let key in entryMap) {
+                const fileInput = document.getElementById(key);
+                const file = fileInput.files[0];
+                if (!file) {
+                    alert(`กรุณาเลือกรูป ${key}`);
+                    return;
+                }
+
+                const reader = new FileReader();
+                await new Promise((resolve) => {
+                    reader.onload = async function () {
+                        const base64 = reader.result.split(",")[1];
+                        const uploadData = new URLSearchParams();
+                        uploadData.append("image", base64);
+                        uploadData.append("name", file.name);
+
+                        const res = await fetch(webAppUrl, {
+                            method: "POST",
+                            body: uploadData,
+                        });
+                        const imageUrl = await res.text();
+                        imageLinks[key] = imageUrl;
+                        resolve();
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // ส่งลิงก์ทั้งหมดเข้า Google Form
+            const formData = new URLSearchParams();
+            for (let key in entryMap) {
+                formData.append(entryMap[key], imageLinks[key]);
+            }
+
+            await fetch(formUrl, {
+                method: "POST",
+                body: formData,
+            });
+
+            alert("ส่งข้อมูลเรียบร้อยแล้ว!"); // ขึ้นข้อความเมื่อส่งฟอร์มสำเร็จ
         });
-      });
     </script>
 </body>
 </html>
