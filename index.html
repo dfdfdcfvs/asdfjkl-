@@ -1330,31 +1330,31 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
     body: formData,
   });
 
-<!-- ปิดฟอร์มให้เรียบร้อยก่อน -->
-</form>
+<button type="submit">ส่งข้อมูล</button>
+        </form>
+    </div>
 
-<!-- ปุ่ม Submit -->
-<button type="submit" form="surveyForm">ส่งข้อมูล</button>
+    <script>
+      document.getElementById("surveyForm").addEventListener("submit", function(e) {
+        e.preventDefault();  // ป้องกันการส่งฟอร์มแบบปกติ
 
-<!-- ใส่ Script ให้ Alert หลังส่งฟอร์ม -->
-<script>
-  document.getElementById("surveyForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
 
-    const form = e.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-      method: form.method,
-      body: formData,
-      mode: 'no-cors'
-    }).then(() => {
-      alert("ส่งฟอร์มพร้อมลิงก์รูปเรียบร้อยแล้ว!");
-      form.reset();
-    }).catch(() => {
-      alert("มีบางอย่างผิดพลาด ลองใหม่อีกครั้งนะ");
-    });
-  });
-</script>
+        // ส่งข้อมูลผ่าน Fetch API
+        fetch(form.action, {
+          method: form.method,
+          body: formData,
+          mode: 'no-cors'
+        }).then(() => {
+          alert("ส่งข้อมูลเรียบร้อยแล้ว!");
+          form.reset();  // ล้างฟอร์มหากต้องการ
+        }).catch(() => {
+          alert("มีบางอย่างผิดพลาด ลองใหม่อีกครั้งนะ");
+        });
+      });
+    </script>
+</body>
+</html>
 </body>
 </html>
