@@ -1270,6 +1270,10 @@ function toggleOtherAdviceFields() {
                 <input type="file" id="image_6" ><br><br>
 
 <button type="button" onclick="submitForm()">ส่งข้อมูล</button>
+<div id="customAlert" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); padding:20px; background:#fff; border:1px solid #ccc; box-shadow:0 0 10px #0003; z-index:9999;">
+  <p id="customAlertText" style="margin-bottom: 10px;"></p>
+  <button onclick="document.getElementById('customAlert').style.display='none'">ปิด</button>
+</div>
 </div>
 
 <script>
@@ -1318,6 +1322,10 @@ async function submitForm() {
       reader.readAsDataURL(file);
     });
   }
+function showCustomAlert(message) {
+  document.getElementById("customAlertText").innerText = message;
+  document.getElementById("customAlert").style.display = "block";
+}
 
   // 2. รวมข้อมูลทั้งหมด
   const formData = new URLSearchParams();
@@ -1341,10 +1349,10 @@ async function submitForm() {
     mode: "no-cors",
     body: formData
   }).then(() => {
-    alert("ส่งข้อมูลเรียบร้อยแล้ว!");
+    showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
   }).catch(err => {
     console.error("เกิดปัญหานิดหน่อย:", err);
-    alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
+    showCustomAlert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
   });
 }
 </script>
