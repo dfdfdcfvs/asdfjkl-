@@ -1269,85 +1269,83 @@ function toggleOtherAdviceFields() {
                 <label>รูปภาพที่ 6</label>
                 <input type="file" id="image_6" ><br><br>
 
-                <button type="button" onclick="submitForm()">ส่งข้อมูล</button>
-        </form>
-    </div>
+<button type="button" onclick="submitForm()">ส่งข้อมูล</button>
+</div>
 
-    <script>
-          function submitForm() {
-    const formData = new FormData();
+<script>
+async function submitForm() {
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse";
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
 
-    // ดึงค่าทุก input, textarea, select
-    document.querySelectorAll('input, textarea, select').forEach(input => {
-      if ((input.type === 'checkbox' || input.type === 'radio') && !input.checked) return;
-
-      formData.append(input.name, input.value);
-    });
-
-const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse";
-const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
-
-const entryMap = {
+  const entryMap = {
     image_1: "entry.1414879840",
     image_2: "entry.1467943237",
     image_3: "entry.1167757169",
     image_4: "entry.623998774",
     image_5: "entry.2126765965",
     image_6: "entry.1719929121"
-};
+  };
 
-document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const imageLinks = {};
 
-    const imageLinks = {};
+  // 1. อัปโหลดรูป
+  for (let key in entryMap) {
+    const fileInput = document.getElementById(key);
+    const file = fileInput.files[0];
+    if (!file) {
+      alert(`กรุณาอัปโหลดรูป: ${key}`);
+      return;
+    }
 
-    // อัปโหลดภาพทั้งหมด
-    for (let key in entryMap) {
-        const fileInput = document.getElementById(key);
-        const file = fileInput.files[0];
-        if (!file) {
-            alert(`รูปที่ ${key}`);
-            return;
-        }
+    const reader = new FileReader();
+    await new Promise((resolve) => {
+      reader.onload = async function () {
+        const base64 = reader.result.split(",")[1];
+        const uploadData = new URLSearchParams();
+        uploadData.append("image", base64);
+        uploadData.append("name", file.name);
 
-        const reader = new FileReader();
-        await new Promise((resolve) => {
-            reader.onload = async function () {
-                const base64 = reader.result.split(",")[1];
-                const uploadData = new URLSearchParams();
-                uploadData.append("image", base64);
-                uploadData.append("name", file.name);
-
-                const res = await fetch(webAppUrl, {
-                    method: "POST",
-                    body: uploadData,
-                });
-                const imageUrl = await res.text();
-                imageLinks[key] = imageUrl;
-                resolve();
-            };
-            reader.readAsDataURL(file);
+        const res = await fetch(webAppUrl, {
+          method: "POST",
+          body: uploadData,
         });
-    }
 
-    // ส่งลิงก์ทั้งหมดเข้า Google Form
-    const formData = new URLSearchParams();
-    for (let key in entryMap) {
-        formData.append(entryMap[key], imageLinks[key]);
-    }
-
-    // ส่งข้อมูลทั้งหมด
-    fetch(formUrl, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData
-    }).then(() => {
-        alert("ส่งข้อมูลเรียบร้อยแล้วน้องชายยย!");
-    }).catch(err => {
-        console.error("เกิดปัญหานิดหน่อย:", err);
-        alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
+        const imageUrl = await res.text();
+        imageLinks[key] = imageUrl;
+        resolve();
+      };
+      reader.readAsDataURL(file);
     });
-});
-    </script>
+  }
+
+  // 2. รวมข้อมูลทั้งหมด
+  const formData = new URLSearchParams();
+
+  // ดึงข้อมูลจาก input / textarea / select
+  document.querySelectorAll("#uploadForm input, #uploadForm textarea, #uploadForm select").forEach(el => {
+    if ((el.type === "checkbox" || el.type === "radio") && !el.checked) return;
+    if (el.name && !entryMap[el.name]) {
+      formData.append(el.name, el.value);
+    }
+  });
+
+  // ดึงลิงก์รูป
+  for (let key in entryMap) {
+    formData.append(entryMap[key], imageLinks[key]);
+  }
+
+  // 3. ส่งข้อมูลไป Google Form
+  fetch(formUrl, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  }).then(() => {
+    alert("ส่งข้อมูลเรียบร้อยแล้วน้องชายยย!");
+  }).catch(err => {
+    console.error("เกิดปัญหานิดหน่อย:", err);
+    alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
+  });
+}
+</script>
 </body>
 </html>
