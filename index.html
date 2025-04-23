@@ -1198,8 +1198,8 @@ function toggleRoofMaterialDamageFields() {
 
 
 <strong>ข้อแนะนำเพิ่มเติม</strong>
-<label><input type="radio" name="entry.1052395595" value="จัดให้มีการตรวจสอบอย่างละเอียด" onclick="toggleOtherAdviceFields()" required> จัดให้มีการตรวจสอบอย่างละเอียด</label>
-<label><input type="radio" name="entry.1052395595" value="จัดให้มีกั้นโดยรอบอาคาร หรือ พื้นที่บางส่วนของอาคาร" onclick="toggleOtherAdviceFields()" required> จัดให้มีกั้นโดยรอบอาคาร หรือ พื้นที่บางส่วนของอาคาร</label>
+<label><input type="radio" name="entry.1052395595" value="จัดให้มีการตรวจสอบอย่างละเอียด" onclick="toggleOtherAdviceFields()" > จัดให้มีการตรวจสอบอย่างละเอียด</label>
+<label><input type="radio" name="entry.1052395595" value="จัดให้มีกั้นโดยรอบอาคาร หรือ พื้นที่บางส่วนของอาคาร" onclick="toggleOtherAdviceFields()" > จัดให้มีกั้นโดยรอบอาคาร หรือ พื้นที่บางส่วนของอาคาร</label>
 <label><input type="radio" name="entry.1052395595" value="อื่นๆ" onclick="toggleOtherAdviceFields()" > อื่นๆ</label>
 <div id="other_advice_group" style="display:none; margin-top: 10px;">
   <label for="other_advice">ข้อแนะนำเพิ่มเติมอื่นๆ</label>
@@ -1330,14 +1330,31 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
     body: formData,
   });
 
-  alert("ส่งฟอร์มพร้อมลิงก์รูปเรียบร้อยแล้ว!");
-});
-</script>
-
-
-<!-- เพิ่มปุ่ม Submit -->
-<button type="submit">ส่งข้อมูล</button>
+<!-- ปิดฟอร์มให้เรียบร้อยก่อน -->
 </form>
-    </div>
+
+<!-- ปุ่ม Submit -->
+<button type="submit" form="surveyForm">ส่งข้อมูล</button>
+
+<!-- ใส่ Script ให้ Alert หลังส่งฟอร์ม -->
+<script>
+  document.getElementById("surveyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      mode: 'no-cors'
+    }).then(() => {
+      alert("ส่งฟอร์มพร้อมลิงก์รูปเรียบร้อยแล้ว!");
+      form.reset();
+    }).catch(() => {
+      alert("มีบางอย่างผิดพลาด ลองใหม่อีกครั้งนะ");
+    });
+  });
+</script>
 </body>
 </html>
