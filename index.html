@@ -1325,16 +1325,19 @@ async function submitForm() {
       reader.readAsDataURL(file);
     });
   }
-function showCustomAlert(message) {
-  document.getElementById("customAlertText").innerText = message;
-  document.getElementById("customAlert").style.display = "block";
-}
+
+  function showCustomAlert(message) {
+    document.getElementById("customAlertText").innerText = message;
+    document.getElementById("customAlert").style.display = "block";
+  }
 
   // 2. รวมข้อมูลทั้งหมด
   const formData = new URLSearchParams();
 
   // ดึงข้อมูลจาก input / textarea / select
-  document.querySelectorAll("#uploadForm input, #uploadForm textarea, #uploadForm select").forEach(el => {
+  const form = document.getElementById('surveyForm'); // ดึงฟอร์มที่มี id "surveyForm"
+
+  form.querySelectorAll("input, textarea, select").forEach(el => {  // เปลี่ยน #uploadForm เป็น #surveyForm
     if ((el.type === "checkbox" || el.type === "radio") && !el.checked) return;
     if (el.name && !(el.id in entryMap)) {
       formData.append(el.name, el.value);
