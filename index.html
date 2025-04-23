@@ -1288,13 +1288,14 @@ async function submitForm() {
 
   const imageLinks = {};
 
-  // 1. อัปโหลดรูป
+  // 1. อัปโหลดรูป (ไม่บังคับ)
   for (let key in entryMap) {
     const fileInput = document.getElementById(key);
-    const file = fileInput.files[0];
+    const file = fileInput?.files[0];
+
     if (!file) {
-      alert(`กรุณาอัปโหลดรูป: ${key}`);
-      return;
+      imageLinks[key] = ""; // ไม่แนบรูปก็ส่งค่าว่างไป
+      continue;
     }
 
     const reader = new FileReader();
@@ -1324,7 +1325,7 @@ async function submitForm() {
   // ดึงข้อมูลจาก input / textarea / select
   document.querySelectorAll("#uploadForm input, #uploadForm textarea, #uploadForm select").forEach(el => {
     if ((el.type === "checkbox" || el.type === "radio") && !el.checked) return;
-    if (el.name && !entryMap[el.name]) {
+    if (el.name && !(el.id in entryMap)) {
       formData.append(el.name, el.value);
     }
   });
@@ -1340,7 +1341,7 @@ async function submitForm() {
     mode: "no-cors",
     body: formData
   }).then(() => {
-    alert("ส่งข้อมูลเรียบร้อยแล้วน้องชายยย!");
+    alert("ส่งข้อมูลเรียบร้อยแล้ว!");
   }).catch(err => {
     console.error("เกิดปัญหานิดหน่อย:", err);
     alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
