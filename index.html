@@ -1284,79 +1284,70 @@ function toggleOtherAdviceFields() {
       formData.append(input.name, input.value);
     });
 
-    // ส่งไปยัง Google Form
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse", {
-      method: "POST",
-      mode: "no-cors", // สำคัญมากสำหรับ Google Form
-      body: formData
-    }).then(() => {
-      alert("ส่งข้อมูลเรียบร้อยแล้วน้องชายยย!");
-    }).catch(err => {
-      console.error("เกิดปัญหานิดหน่อย:", err);
-      alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
-    });
-  }
-        
-        const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse";
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
+const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse";
+const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
 
-        const entryMap = {
-            image_1: "entry.1414879840",
-            image_2: "entry.1467943237",
-            image_3: "entry.1167757169",
-            image_4: "entry.623998774",
-            image_5: "entry.2126765965",
-            image_6: "entry.1719929121"
-        };
+const entryMap = {
+    image_1: "entry.1414879840",
+    image_2: "entry.1467943237",
+    image_3: "entry.1167757169",
+    image_4: "entry.623998774",
+    image_5: "entry.2126765965",
+    image_6: "entry.1719929121"
+};
 
-        document.getElementById("uploadForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-            const imageLinks = {};
+    const imageLinks = {};
 
-            // อัปโหลดภาพทั้งหมด
-            for (let key in entryMap) {
-                const fileInput = document.getElementById(key);
-                const file = fileInput.files[0];
-                if (!file) {
-                    alert(`รูปที่ ${key}`);
-                    return;
-                }
+    // อัปโหลดภาพทั้งหมด
+    for (let key in entryMap) {
+        const fileInput = document.getElementById(key);
+        const file = fileInput.files[0];
+        if (!file) {
+            alert(`รูปที่ ${key}`);
+            return;
+        }
 
-                const reader = new FileReader();
-                await new Promise((resolve) => {
-                    reader.onload = async function () {
-                        const base64 = reader.result.split(",")[1];
-                        const uploadData = new URLSearchParams();
-                        uploadData.append("image", base64);
-                        uploadData.append("name", file.name);
+        const reader = new FileReader();
+        await new Promise((resolve) => {
+            reader.onload = async function () {
+                const base64 = reader.result.split(",")[1];
+                const uploadData = new URLSearchParams();
+                uploadData.append("image", base64);
+                uploadData.append("name", file.name);
 
-                        const res = await fetch(webAppUrl, {
-                            method: "POST",
-                            body: uploadData,
-                        });
-                        const imageUrl = await res.text();
-                        imageLinks[key] = imageUrl;
-                        resolve();
-                    };
-                    reader.readAsDataURL(file);
+                const res = await fetch(webAppUrl, {
+                    method: "POST",
+                    body: uploadData,
                 });
-            }
-
-            // ส่งลิงก์ทั้งหมดเข้า Google Form
-            const formData = new URLSearchParams();
-            for (let key in entryMap) {
-                formData.append(entryMap[key], imageLinks[key]);
-            }
-
-            await fetch(formUrl, {
-                method: "POST",
-                body: formData,
-            });
-
-            // เปลี่ยนหน้าไปยัง URL ที่ต้องการและแสดงข้อความ
-            window.location.href = 'https://dfdfdcfvs.github.io/-/'; // หน้าที่แสดงข้อความ
+                const imageUrl = await res.text();
+                imageLinks[key] = imageUrl;
+                resolve();
+            };
+            reader.readAsDataURL(file);
         });
+    }
+
+    // ส่งลิงก์ทั้งหมดเข้า Google Form
+    const formData = new URLSearchParams();
+    for (let key in entryMap) {
+        formData.append(entryMap[key], imageLinks[key]);
+    }
+
+    // ส่งข้อมูลทั้งหมด
+    fetch(formUrl, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+    }).then(() => {
+        alert("ส่งข้อมูลเรียบร้อยแล้วน้องชายยย!");
+    }).catch(err => {
+        console.error("เกิดปัญหานิดหน่อย:", err);
+        alert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
+    });
+});
     </script>
 </body>
 </html>
