@@ -151,15 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!-- วันที่สำรวจ -->
 <label for="survey_date">วันที่สำรวจ</label>
-<input type="number" name="entry.1955342692_day" placeholder="วัน (dd)"required>
-<input type="number" name="entry.1955342692_month" placeholder="เดือน (mm)"required>
-<input type="number" name="entry.1955342692_year" placeholder="ปี (yyyy)"required>
+<input type="date" id="survey_date" name="entry.1955342692" required>
 
 <!-- เวลาเริ่มต้นสำรวจ -->
 <label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
-<input type="number" name="entry.1442653207_hour" placeholder="ชั่วโมง (hh)"required>
-<input type="number" name="entry.1442653207_minute" placeholder="นาที (mm)"required>
-
+<input type="time" id="survey_time" name="entry.1442653207" required>
 
 <!-- ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร -->
 <h3>ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร</h3>
@@ -1214,9 +1210,9 @@ function toggleOtherAdviceFields() {
 }
 </script>
 
-<label for="survey_completion_time">เวลาสำรวจแล้วเสร็จ</label>
-<input type="number" name="entry.1656273013_hour" placeholder="ชั่วโมง (hh)"required>
-<input type="number" name="entry.1656273013_minute" placeholder="นาที (mm)"required>
+    <!-- เวลาสำรวจแล้วเสร็จ -->
+    <label for="survey_completion_time">เวลาสำรวจแล้วเสร็จ</label>
+    <input type="time" name="entry.1656273013" required>
 
 <!-- ส่วนที่ 9 ข้อมูลผู้สำรวจ -->
 <h3>ส่วนที่ 9 ข้อมูลผู้สำรวจ</h3>
