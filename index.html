@@ -1,128 +1,140 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบสำรวจความเสียหายโครงสร้าง</title>
+  <style>
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #e3f2fd, #ffffff); /* ฟ้าอ่อน - ขาว */
-        margin: 0;
-        padding: 0;
-        color: #263238; /* เทาเข้มอ่านง่าย */
+      font-family: 'Segoe UI', Tahoma;
+      background: linear-gradient(135deg, #e3f2fd, #fff);
+      margin: 0;
+      padding: 0;
+      color: #263238;
     }
-
     .container {
-        width: 100%;
-        max-width: 1000px;
-        margin: 30px auto;
-        padding: 30px;
-        background-color: white;
-        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.1); /* เงาฟ้า */
-        border-radius: 16px;
-        border: 1px solid #bbdefb; /* ขอบฟ้าอ่อน */
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 30px;
+      background: #fff;
+      box-shadow: 0 6px 20px rgba(33,150,243,0.1);
+      border-radius: 16px;
+      border: 1px solid #bbdefb;
     }
-
     h1 {
-        text-align: center;
-        color: #1565c0; /* น้ำเงินกรม */
-        font-size: 26px;
-        margin-bottom: 30px;
+      text-align: center;
+      color: #1565c0;
+      font-size: 26px;
+      margin-bottom: 30px;
     }
-
     #surveyForm {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-
     label {
-        font-weight: bold;
-        color: #333;
+      font-weight: bold;
+      color: #333;
     }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="date"],
-    input[type="time"],
-    select,
-    textarea {
-        padding: 12px;
-        border: 1px solid #90caf9;
-        border-radius: 10px;
-        font-size: 16px;
-        background-color: #f1f8ff;
-        transition: 0.3s ease;
-        margin-bottom: 4px;
+    input, select, textarea {
+      padding: 12px;
+      border: 1px solid #90caf9;
+      border-radius: 10px;
+      font-size: 16px;
+      background: #f1f8ff;
+      margin-bottom: 4px;
     }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-        border-color: #42a5f5;
-        outline: none;
-        background-color: #ffffff;
+    input:focus, select:focus, textarea:focus {
+      border-color: #42a5f5;
+      background: #fff;
     }
-
     button {
-        padding: 12px;
-        border: none;
-        background-color: #1976d2;
-        color: white;
-        font-size: 18px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      padding: 12px;
+      background: #1976d2;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
-
     button:hover {
-        background-color: #1565c0;
+      background: #1565c0;
     }
-
     #customAlert {
-        display: none;
-        position: fixed;
-        top: 30%;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 30px;
-        background: #fff;
-        border: 1px solid #90caf9;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        z-index: 9999;
-        text-align: center;
-        max-width: 90%;
-        width: 400px;
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #90caf9;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 9999;
+      text-align: center;
+      width: 400px;
+      max-width: 90%;
     }
-
     #customAlert button {
-        padding: 10px 20px;
-        background-color: #2196f3;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      padding: 10px 20px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
     }
-
     #customAlert button:hover {
-        background-color: #1976d2;
+      background: #1976d2;
     }
-
     .compact-checkbox label {
-        display: flex;
-        align-items: center;
-        margin: 2px 0;
-        font-size: 14px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin: 2px 0;
+    }
+    .compact-checkbox input[type="checkbox"] {
+      margin-right: 6px;
+    }
+  </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    function showCustomAlert(message) {
+        const alertBox = document.getElementById('customAlert');
+        const alertText = document.getElementById('customAlertText');
+        alertText.textContent = message;
+        alertBox.style.display = 'block';
     }
 
-    .compact-checkbox input[type="checkbox"] {
-        margin-right: 6px;
+    function autoSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+        formData.forEach((value, key) => {
+            console.log(key + ': ' + value);
+        });
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        })
+        .then(() => {
+            console.log("ส่งแล้วนะ!");
+            showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
+            form.reset();
+        })
+        .catch((error) => {
+            console.error("เกิดข้อผิดพลาด: ", error);
+            showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+        });
     }
-</style>
+
+    document.getElementById('surveyForm').addEventListener('submit', autoSubmit);
+});
+</script>
 </head>
 <body>
     <div class="container">
@@ -1250,40 +1262,6 @@ function toggleOtherAdviceFields() {
             <button onclick="document.getElementById('customAlert').style.display='none'">ปิด</button>
         </div>
     </div>
-
-<script>
-function showCustomAlert(message) {
-    const alertBox = document.getElementById('customAlert');
-    const alertText = document.getElementById('customAlertText');
-    alertText.textContent = message;
-    alertBox.style.display = 'block';
-}
-
-document.getElementById('surveyForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const form = event.target;
-    const formData = new FormData(form);
-    
-    // ตรวจสอบข้อมูลที่ถูกส่งไป
-    formData.forEach((value, key) => {
-        console.log(key + ': ' + value);
-    });
-
-    fetch(form.action, {
-        method: 'POST',
-        body: formData
-    })
-    .then(() => {
-        console.log("ส่งแล้วนะ!");
-        showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
-        form.reset();
-    })
-    .catch((error) => {
-        console.error("เกิดข้อผิดพลาด: ", error);
-        showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
-    });
-});
 </script>
 </body>
 </html>
