@@ -5,112 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #fce4ec);
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e3eaf2, #f5f5f5); /* ฟ้าหม่นเทาอ่อน */
+    margin: 0;
+    padding: 0;
+    color: #2c3e50; /* เทาเข้มนุ่มๆ */
+}
 
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: white;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
-            border: 1px solid #ddd;
-        }
+.container {
+    background-color: #ffffff;
+    border: 1px solid #d0d7de;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.1); /* เงาสุภาพ */
+}
 
-        h1 {
-            text-align: center;
-            color: #5c6bc0;
-            font-size: 26px;
-            margin-bottom: 30px;
-        }
+h1 {
+    color: #2f4f6f; /* น้ำเงินหม่น */
+}
 
-        #surveyForm {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* เพิ่มระยะห่างระหว่างฟิลด์ */
-        }
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    background-color: #f8f9fa;
+    border: 1px solid #ccd6dd;
+    color: #2c3e50;
+}
 
-        label {
-            font-weight: bold;
-            color: #333;
-        }
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6ca0dc;
+    background-color: #ffffff;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="date"],
-        input[type="time"],
-        select,
-        textarea {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            font-size: 16px;
-            background-color: #f9f9f9;
-            transition: 0.3s ease;
-            margin-bottom: 4px;
-        }
+button {
+    background-color: #546e7a; /* น้ำเงินหม่น-เทา */
+    color: #ffffff;
+}
 
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: #90caf9;
-            outline: none;
-            background-color: #fff;
-        }
+button:hover {
+    background-color: #455a64;
+}
 
-        button {
-            padding: 12px;
-            border: none;
-            background-color: #64b5f6;
-            color: white;
-            font-size: 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+#customAlert {
+    background: #ffffff;
+    border: 1px solid #cfd8dc;
+}
 
-        button:hover {
-            background-color: #42a5f5;
-        }
+#customAlert button {
+    background-color: #388e3c; /* เขียวหม่นดูเชื่อถือได้ */
+}
 
-        #customAlert {
-            display: none;
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 30px;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            text-align: center;
-            max-width: 90%;
-            width: 400px;
-        }
-
-        #customAlert button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #customAlert button:hover {
-            background-color: #45a049;
-        }
+#customAlert button:hover {
+    background-color: #2e7d32;
+}
 
         .compact-checkbox label {
             display: flex;
@@ -121,6 +72,7 @@
         .compact-checkbox input[type="checkbox"] {
             margin-right: 6px;
         }
+        
     </style>
 </head>
 <body>
