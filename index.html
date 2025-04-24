@@ -1264,20 +1264,22 @@ document.getElementById('surveyForm').addEventListener('submit', function(event)
     const form = event.target;
     const formData = new FormData(form);
 
-fetch(form.action, {
-    method: 'POST',
-    mode: 'no-cors', // ใส่กลับเข้ามา
-    body: formData
-})
-.then(() => {
-    console.log("ส่งแล้วนะ!");
-    showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
-    form.reset();
-})
-.catch((error) => {
-    console.error("เกิดข้อผิดพลาด: ", error);
-    showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
-});
+    console.log("Form Data: ", formData);
+
+    fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors', // ใส่กลับเข้ามา
+        body: formData
+    })
+    .then(() => {
+        console.log("ส่งแล้วนะ!");
+        showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
+        form.reset();
+    })
+    .catch((error) => {
+        console.error("เกิดข้อผิดพลาด: ", error);
+        showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+    });
 });
 </script>
 </body>
