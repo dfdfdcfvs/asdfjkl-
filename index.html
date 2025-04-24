@@ -1237,21 +1237,6 @@ function toggleOtherAdviceFields() {
 <label for="survey_leader_phone">โทรศัพท์</label>
 <input type="text" id="survey_leader_phone" name="entry.422090311" >
 
-<!-- ส่วนที่ 10 ภาพประกอบที่จำเป็น -->
- <h3>ส่วนที่ 10 ภาพประกอบที่จำเป็น</h3>
-                <label>รูปภาพที่ 1</label>
-                <input type="file" id="image_1" name="entry.1414879840"><br>
-                <label>รูปภาพที่ 2</label>
-                <input type="file" id="image_2" name="entry.1467943237"><br>
-                <label>รูปภาพที่ 3</label>
-                <input type="file" id="image_3" name="entry.1167757169"><br>
-                <label>รูปภาพที่ 4</label>
-                <input type="file" id="image_4" name="entry.623998774"><br>
-                <label>รูปภาพที่ 5</label>
-                <input type="file" id="image_5" name="entry.2126765965"><br>
-                <label>รูปภาพที่ 6</label>
-                <input type="file" id="image_6" name="entry.1719929121"><br><br>
-
 <button type="submit">ส่งข้อมูล</button>
 <div id="customAlert" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); padding:30px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.2); z-index:9999; text-align:center; max-width: 90%; width: 400px;">
   <p id="customAlertText" style="margin-bottom: 20px; font-size:18px; font-weight:bold; color: #333;"></p>
@@ -1268,21 +1253,27 @@ function toggleOtherAdviceFields() {
         </div>
     </div>
 
-    <script>
-        function showCustomAlert(message) {
-            document.getElementById("customAlertText").innerText = message;
-            document.getElementById("customAlert").style.display = "block";
-        }
+<script>
+document.getElementById('surveyForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        // ใส่ข้อมูลให้ฟอร์มเมื่อกรอกเสร็จ
-        document.getElementById('surveyForm').addEventListener('submit', function(event) {
-            event.preventDefault();  // ป้องกันการส่งข้อมูลแบบธรรมดา
+    const form = event.target;
+    const formData = new FormData(form);
 
-            // ส่วนที่จะทำหลังจากกรอกเสร็จ
-            showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
-            // หลังจากนั้นสามารถส่งข้อมูลไปที่ Google Form ได้ตามปกติ
-            this.submit();
-        });
-    </script>
+    fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors', // ต้องใส่เพื่อให้ส่งได้
+        body: formData
+    })
+    .then(() => {
+        showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
+        form.reset(); // ล้างฟอร์ม
+    })
+    .catch((error) => {
+        console.error("เกิดข้อผิดพลาด: ", error);
+        showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+    });
+});
+</script>
 </body>
 </html>
