@@ -138,11 +138,15 @@
 
 <!-- วันที่สำรวจ -->
 <label for="survey_date">วันที่สำรวจ</label>
-<input type="date" id="survey_date" name="entry.1955342692" required>
+<input type="number" name="entry.1955342692_day" placeholder="วัน (dd)"required>
+<input type="number" name="entry.1955342692_month" placeholder="เดือน (mm)"required>
+<input type="number" name="entry.1955342692_year" placeholder="ปี (yyyy)"required>
 
 <!-- เวลาเริ่มต้นสำรวจ -->
 <label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
-<input type="time" id="survey_time" name="entry.1442653207" required>
+<input type="number" name="entry.1442653207_hour" placeholder="ชั่วโมง (hh)"required>
+<input type="number" name="entry.1442653207_minute" placeholder="นาที (mm)"required>
+
 
 <!-- ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร -->
 <h3>ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร</h3>
@@ -757,15 +761,15 @@ function toggleColumnDamageFields() {
 </div>
 <div id="column_beam_joint_damage_area_group" style="display:none; margin-top: 10px;">
   <label for="column_beam_joint_damage_area">บริเวณที่ไม่มี/มีรอยแตกร้าวขนาดเล็ก จุดต่อเสา-คาน</label>
-  <input type="text" id="column_beam_joint_damage_area" name="entry.1303472040" required>
+  <input type="text" id="column_beam_joint_damage_area" name="entry.1303472040" >
 </div>
 <div id="column_beam_joint_damage_area_2_group" style="display:none; margin-top: 10px;">
   <label for="column_beam_joint_damage_area_2">บริเวณที่มีรอยแตกร้าวเห็นได้ชัดเจน จุดต่อเสา-คาน</label>
-  <input type="text" id="column_beam_joint_damage_area_2" name="entry.785817192" required>
+  <input type="text" id="column_beam_joint_damage_area_2" name="entry.785817192" >
 </div>
 <div id="column_beam_joint_damage_area_3_group" style="display:none; margin-top: 10px;">
   <label for="column_beam_joint_damage_area_3">บริเวณที่มีรอยฉีกขาดอย่างรุนแรง จุดต่อเสา-คาน</label>
-  <input type="text" id="column_beam_joint_damage_area_3" name="entry.816614265" required>
+  <input type="text" id="column_beam_joint_damage_area_3" name="entry.816614265" >
 </div>
 <script>
 function toggleColumnBeamJointFields() {
@@ -805,15 +809,15 @@ function toggleColumnBeamJointFields() {
 </div>
 <div id="konstrukt_wall_damage_area_group" style="display:none; margin-top: 10px;">
   <label for="konstrukt_wall_damage_area">บริเวณที่ไม่มี/มีรอยแตกร้าวขนาดเล็ก กำแพง คสล.</label>
-  <input type="text" id="konstrukt_wall_damage_area" name="entry.2076564423" required>
+  <input type="text" id="konstrukt_wall_damage_area" name="entry.2076564423" >
 </div>
 <div id="konstrukt_wall_damage_area_2_group" style="display:none; margin-top: 10px;">
   <label for="konstrukt_wall_damage_area_2">บริเวณที่มีรอยแตกร้าวเห็นได้ชัดเจน กำแพง คสล.</label>
-  <input type="text" id="konstrukt_wall_damage_area_2" name="entry.1711158474" required>
+  <input type="text" id="konstrukt_wall_damage_area_2" name="entry.1711158474" >
 </div>
 <div id="konstrukt_wall_damage_area_3_group" style="display:none; margin-top: 10px;">
   <label for="konstrukt_wall_damage_area_3">บริเวณที่มีรอยฉีกขาดอย่างรุนแรง กำแพง คสล.</label>
-  <input type="text" id="konstrukt_wall_damage_area_3" name="entry.1051839376" required>
+  <input type="text" id="konstrukt_wall_damage_area_3" name="entry.1051839376" >
 </div>
 <script>
 function toggleKonstruktWallFields() {
@@ -1259,20 +1263,21 @@ document.getElementById('surveyForm').addEventListener('submit', function(event)
     const form = event.target;
     const formData = new FormData(form);
 
-    fetch(form.action, {
-        method: 'POST',
-        body: formData  // เอา mode: 'no-cors' ออก
-    })
-    .then(() => {
-        showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
-        form.reset();  // ล้างฟอร์ม
-    })
-    .catch((error) => {
-        console.error("เกิดข้อผิดพลาด: ", error);
-        showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
-    });
+fetch(form.action, {
+    method: 'POST',
+    mode: 'no-cors', // ใส่กลับเข้ามา
+    body: formData
+})
+.then(() => {
+    console.log("ส่งแล้วนะ!");
+    showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
+    form.reset();
+})
+.catch((error) => {
+    console.error("เกิดข้อผิดพลาด: ", error);
+    showCustomAlert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+});
 });
 </script>
-
 </body>
 </html>
