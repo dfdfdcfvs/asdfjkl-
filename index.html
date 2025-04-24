@@ -80,12 +80,55 @@
         button:hover {
             background-color: #42a5f5;
         }
+
+        #customAlert {
+            display: none;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        #customAlert button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #customAlert button:hover {
+            background-color: #45a049;
+        }
+          .compact-checkbox label {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+    font-size: 14px;
+  }
+  .compact-checkbox input[type="checkbox"] {
+    margin-right: 6px;
+  }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</h1>
-        <div id="surveyForm">
+
+        <!-- เปลี่ยนจาก div เป็น form -->
+        <form id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST">
 
 <div style="text-align: center;">
   <img src="https://i.imgur.com/OeH611n.png" alt="รูปจากเครื่อง" width="1000">
@@ -124,7 +167,6 @@
   </label>
 </div>
 
-
 <label>ขนาดและประเภท</label>
 <div class="compact-radio">
   <label>
@@ -157,18 +199,6 @@
   </label>
 </div>
 
-
-<style>
-  .compact-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;  /* ลดระยะห่างแนวตั้ง */
-    font-size: 14px;
-  }
-  .compact-checkbox input[type="checkbox"] {
-    margin-right: 6px; /* ระยะห่าง checkbox กับข้อความ */
-  }
-</style>
 <label for="001_type">การใช้สอยอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="001_type">
   <label><input type="checkbox" name="entry.1053892010" value="บ้านพักอาศัย"> บ้านพักอาศัย</label>
@@ -229,17 +259,6 @@
 <label for="building_area">พื้นที่อาคาร (ประมาณ) ตร.ม.</label>
 <input type="text" id="building_area" name="entry.488624598" >
 
-<style>
-  .compact-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-    font-size: 14px;
-  }
-  .compact-checkbox input[type="checkbox"] {
-    margin-right: 6px;
-  }
-</style>
 <label for="surrounding_condition">สภาพโดยรอบอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="surrounding_condition">
   <label><input type="checkbox" name="entry.217589440" value="มีอาคารข้างเคียง"> มีอาคารข้างเคียง</label>
@@ -247,18 +266,6 @@
   <label><input type="checkbox" name="entry.217589440" value="ติดแม่น้ำ คลอง"> ติดแม่น้ำ คลอง</label>
 </div>
 
-
-<style>
-  .compact-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-    font-size: 14px;
-  }
-  .compact-checkbox input[type="checkbox"] {
-    margin-right: 6px;
-  }
-</style>
 <label for="structure_type">ชนิดโครงสร้างอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="structure_type">
   <label><input type="checkbox" name="entry.1641898739" value="โครงสร้างไม้"> โครงสร้างไม้</label>
@@ -283,18 +290,6 @@
   });
 </script>
 
-
-<style>
-  .compact-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-    font-size: 14px;
-  }
-  .compact-checkbox input[type="checkbox"] {
-    margin-right: 6px;
-  }
-</style>
 <label for="wall_material">วัสดุผนังภายนอกของอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="wall_material">
   <label><input type="checkbox" name="entry.2107839101" value="ผนังอิฐก่อ"> ผนังอิฐก่อ</label>
@@ -317,18 +312,6 @@ otherInputGroup3.style.display = this.checked ? 'block' : 'none';
   });
 </script>
 
-
-<style>
-  .compact-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 2px 0;
-    font-size: 14px;
-  }
-  .compact-checkbox input[type="checkbox"] {
-    margin-right: 6px;
-  }
-</style>
 <!-- วัสดุผนังกั้นภายในของอาคาร -->
 <label for="interior_wall_material">วัสดุผนังกั้นภายในของอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="interior_wall_material">
@@ -1257,19 +1240,19 @@ function toggleOtherAdviceFields() {
 <!-- ส่วนที่ 10 ภาพประกอบที่จำเป็น -->
  <h3>ส่วนที่ 10 ภาพประกอบที่จำเป็น</h3>
                 <label>รูปภาพที่ 1</label>
-                <input type="file" id="image_1" ><br>
+                <input type="file" id="image_1" name="entry.1414879840"><br>
                 <label>รูปภาพที่ 2</label>
-                <input type="file" id="image_2" ><br>
+                <input type="file" id="image_2" name="entry.1467943237"><br>
                 <label>รูปภาพที่ 3</label>
-                <input type="file" id="image_3" ><br>
+                <input type="file" id="image_3" name="entry.1167757169"><br>
                 <label>รูปภาพที่ 4</label>
-                <input type="file" id="image_4" ><br>
+                <input type="file" id="image_4" name="entry.623998774"><br>
                 <label>รูปภาพที่ 5</label>
-                <input type="file" id="image_5" ><br>
+                <input type="file" id="image_5" name="entry.2126765965"><br>
                 <label>รูปภาพที่ 6</label>
-                <input type="file" id="image_6" ><br><br>
+                <input type="file" id="image_6" name="entry.1719929121"><br><br>
 
-<button type="button" onclick="submitForm()">ส่งข้อมูล</button>
+<button type="submit">ส่งข้อมูล</button>
 <div id="customAlert" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); padding:30px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.2); z-index:9999; text-align:center; max-width: 90%; width: 400px;">
   <p id="customAlertText" style="margin-bottom: 20px; font-size:18px; font-weight:bold; color: #333;"></p>
   <button onclick="document.getElementById('customAlert').style.display='none'" style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; font-size:16px; cursor:pointer; transition: background-color 0.3s ease;">
@@ -1277,90 +1260,29 @@ function toggleOtherAdviceFields() {
   </button>
 </div>
 
-</div>
+</form>
 
-<script>
-async function submitForm() {
-  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse";
-  const webAppUrl = "https://script.google.com/macros/s/AKfycbw_YMPGbgIKPVPapIEkCp2hQ3gmgK1c0_XQESkSFUlb3Y31wmaZPWMKf5z3VrdrHcDbdQ/exec";
+ <div id="customAlert">
+            <p id="customAlertText" style="margin-bottom: 20px; font-size:18px; font-weight:bold; color: #333;"></p>
+            <button onclick="document.getElementById('customAlert').style.display='none'">ปิด</button>
+        </div>
+    </div>
 
-  const entryMap = {
-    image_1: "entry.1414879840",
-    image_2: "entry.1467943237",
-    image_3: "entry.1167757169",
-    image_4: "entry.623998774",
-    image_5: "entry.2126765965",
-    image_6: "entry.1719929121"
-  };
+    <script>
+        function showCustomAlert(message) {
+            document.getElementById("customAlertText").innerText = message;
+            document.getElementById("customAlert").style.display = "block";
+        }
 
-  const imageLinks = {};
+        // ใส่ข้อมูลให้ฟอร์มเมื่อกรอกเสร็จ
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // ป้องกันการส่งข้อมูลแบบธรรมดา
 
-  // 1. อัปโหลดรูป (ไม่บังคับ)
-  for (let key in entryMap) {
-    const fileInput = document.getElementById(key);
-    const file = fileInput?.files[0];
-
-    if (!file) {
-      imageLinks[key] = ""; // ไม่แนบรูปก็ส่งค่าว่างไป
-      continue;
-    }
-
-    const reader = new FileReader();
-    await new Promise((resolve) => {
-      reader.onload = async function () {
-        const base64 = reader.result.split(",")[1];
-        const uploadData = new URLSearchParams();
-        uploadData.append("image", base64);
-        uploadData.append("name", file.name);
-
-        const res = await fetch(webAppUrl, {
-          method: "POST",
-          body: uploadData,
+            // ส่วนที่จะทำหลังจากกรอกเสร็จ
+            showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
+            // หลังจากนั้นสามารถส่งข้อมูลไปที่ Google Form ได้ตามปกติ
+            this.submit();
         });
-
-        const imageUrl = await res.text();
-        imageLinks[key] = imageUrl;
-        resolve();
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function showCustomAlert(message) {
-    document.getElementById("customAlertText").innerText = message;
-    document.getElementById("customAlert").style.display = "block";
-  }
-
-  // 2. รวมข้อมูลทั้งหมด
-  const formData = new URLSearchParams();
-
-  // ดึงข้อมูลจาก input / textarea / select
-  const form = document.getElementById('surveyForm'); // ดึงฟอร์มที่มี id "surveyForm"
-
-  form.querySelectorAll("input, textarea, select").forEach(el => {  // เปลี่ยน #uploadForm เป็น #surveyForm
-    if ((el.type === "checkbox" || el.type === "radio") && !el.checked) return;
-    if (el.name && !(el.id in entryMap)) {
-      formData.append(el.name, el.value);
-    }
-  });
-
-  // ดึงลิงก์รูป
-  for (let key in entryMap) {
-    formData.append(entryMap[key], imageLinks[key]);
-  }
-
-  // 3. ส่งข้อมูลไป Google Form
-  fetch(formUrl, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  }).then(() => {
-    showCustomAlert("ส่งข้อมูลเรียบร้อยแล้ว!");
-  }).catch(err => {
-    console.error("เกิดปัญหานิดหน่อย:", err);
-    showCustomAlert("ส่งไม่สำเร็จ ลองใหม่อีกทีนะ!");
-  });
-}
-</script>
+    </script>
 </body>
 </html>
