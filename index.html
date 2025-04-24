@@ -7,10 +7,10 @@
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #eceff1, #cfd8dc); /* โทนสุขุม */
+        background: linear-gradient(135deg, #e3f2fd, #ffffff); /* ฟ้าอ่อน - ขาว */
         margin: 0;
         padding: 0;
-        color: #333;
+        color: #263238; /* เทาเข้มอ่านง่าย */
     }
 
     .container {
@@ -19,14 +19,14 @@
         margin: 30px auto;
         padding: 30px;
         background-color: white;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.1); /* เงาฟ้า */
         border-radius: 16px;
-        border: 1px solid #ccc;
+        border: 1px solid #bbdefb; /* ขอบฟ้าอ่อน */
     }
 
     h1 {
         text-align: center;
-        color: #37474f; /* เทาเข้ม */
+        color: #1565c0; /* น้ำเงินกรม */
         font-size: 26px;
         margin-bottom: 30px;
     }
@@ -49,10 +49,10 @@
     select,
     textarea {
         padding: 12px;
-        border: 1px solid #bbb;
+        border: 1px solid #90caf9;
         border-radius: 10px;
         font-size: 16px;
-        background-color: #f5f5f5;
+        background-color: #f1f8ff;
         transition: 0.3s ease;
         margin-bottom: 4px;
     }
@@ -60,15 +60,15 @@
     input:focus,
     select:focus,
     textarea:focus {
-        border-color: #90a4ae;
+        border-color: #42a5f5;
         outline: none;
-        background-color: #fff;
+        background-color: #ffffff;
     }
 
     button {
         padding: 12px;
         border: none;
-        background-color: #546e7a; /* เทาอมฟ้า */
+        background-color: #1976d2;
         color: white;
         font-size: 18px;
         border-radius: 10px;
@@ -77,7 +77,7 @@
     }
 
     button:hover {
-        background-color: #455a64; /* เข้มขึ้นตอน hover */
+        background-color: #1565c0;
     }
 
     #customAlert {
@@ -88,7 +88,7 @@
         transform: translateX(-50%);
         padding: 30px;
         background: #fff;
-        border: 1px solid #ccc;
+        border: 1px solid #90caf9;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         z-index: 9999;
@@ -99,7 +99,7 @@
 
     #customAlert button {
         padding: 10px 20px;
-        background-color: #607d8b;
+        background-color: #2196f3;
         color: white;
         border: none;
         border-radius: 5px;
@@ -109,7 +109,7 @@
     }
 
     #customAlert button:hover {
-        background-color: #455a64;
+        background-color: #1976d2;
     }
 
     .compact-checkbox label {
