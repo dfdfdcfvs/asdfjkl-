@@ -54,22 +54,23 @@ h1 {
   box-sizing: border-box;
 }
 
-/* จัด radio และ checkbox ให้เท่ากับ input */
 .compact-radio,
 .compact-checkbox {
   display: flex;
   flex-direction: column;
   gap: 5px;
   align-items: flex-start; /* ชิดซ้าย */
+  margin-left: 0; /* ชิดซ้ายสุด */
 }
 
 .compact-radio label,
 .compact-checkbox label {
   display: flex;
-  align-items: center; /* จัดตำแหน่งให้อยู่กลางทั้งแนวตั้ง */
+  align-items: center; /* จัดตำแหน่งให้ช่องเลือกและข้อความอยู่กลางแนวตั้ง */
   gap: 5px;
   font-weight: normal; /* ไม่เน้นข้อความ */
   white-space: nowrap;
+  margin-left: 0; /* ให้ตำแหน่งข้อความเริ่มต้นที่เดียวกัน */
 }
 
 .compact-radio label input,
@@ -77,6 +78,7 @@ h1 {
   flex-shrink: 0;
   margin-right: 5px; /* เพิ่มช่องว่างระหว่าง input กับข้อความ */
 }
+
 
 button {
   padding: 12px 20px;
