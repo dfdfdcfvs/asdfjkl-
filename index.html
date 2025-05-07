@@ -5,68 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>แบบฟอร์มสำรวจข้อมูล</title>
   <style>
-body {
-            font-family: 'Segoe UI', Tahoma;
-            background: linear-gradient(135deg, #e3f2fd, #fff);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #fce4ec);
             margin: 0;
             padding: 0;
-            color: #263238;
+            color: #333;
         }
-        /* Container Styles */
+
         .container {
+            width: 100%;
             max-width: 1000px;
             margin: 30px auto;
             padding: 30px;
-            background: #fff;
-            box-shadow: 0 6px 20px rgba(33,150,243,0.1);
+            background-color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             border-radius: 16px;
-            border: 1px solid #bbdefb;
+            border: 1px solid #ddd;
         }
-        /* Heading Styles */
+
         h1 {
             text-align: center;
-            color: #1565c0;
+            color: #5c6bc0;
             font-size: 26px;
             margin-bottom: 30px;
         }
-        /* Form Styles */
+
         #surveyForm {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 15px; /* เพิ่มระยะห่างระหว่างฟิลด์ */
         }
-        /* Label Styles */
+
         label {
             font-weight: bold;
             color: #333;
         }
-        /* Input, Select, Textarea Styles */
-        input, select, textarea {
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
             padding: 12px;
-            border: 1px solid #90caf9;
+            border: 1px solid #ccc;
             border-radius: 10px;
             font-size: 16px;
-            background: #f1f8ff;
+            background-color: #f9f9f9;
+            transition: 0.3s ease;
             margin-bottom: 4px;
         }
-        input:focus, select:focus, textarea:focus {
-            border-color: #42a5f5;
-            background: #fff;
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #90caf9;
+            outline: none;
+            background-color: #fff;
         }
-        /* Button Styles */
+
         button {
             padding: 12px;
-            background: #1976d2;
-            color: #fff;
-            font-size: 18px;
             border: none;
+            background-color: #64b5f6;
+            color: white;
+            font-size: 18px;
             border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background: #1565c0;
+            background-color: #42a5f5;
         }
-        /* Custom Alert Styles */
+
         #customAlert {
             display: none;
             position: fixed;
@@ -75,66 +88,38 @@ body {
             transform: translateX(-50%);
             padding: 30px;
             background: #fff;
-            border: 1px solid #90caf9;
+            border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             z-index: 9999;
             text-align: center;
-            width: 400px;
             max-width: 90%;
+            width: 400px;
         }
+
         #customAlert button {
             padding: 10px 20px;
-            background: #2196f3;
-            color: #fff;
+            background-color: #4CAF50;
+            color: white;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         #customAlert button:hover {
-            background: #1976d2;
+            background-color: #45a049;
         }
-        /* Compact Checkbox Styles */
+
         .compact-checkbox label {
             display: flex;
             align-items: center;
-            font-size: 14px;
             margin: 2px 0;
+            font-size: 14px;
         }
         .compact-checkbox input[type="checkbox"] {
             margin-right: 6px;
-        }
-        /* Form section styles */
-        .form-section {
-            border: 1px solid #e3f2fd;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            background-color: #fafeff;
-        }
-        .form-section h2 {
-            font-size: 18px;
-            margin-top: 0;
-            color: #1976d2;
-            border-bottom: 1px solid #e3f2fd;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .rating-group {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-        .rating-option {
-            text-align: center;
-        }
-        .required:after {
-            content: " *";
-            color: #d32f2f;
         }
   </style>
 </head>
