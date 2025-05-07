@@ -49,26 +49,33 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #f9f9f9;
+  max-width: 995px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* จัด radio และ checkbox ให้แนวนอนและระยะพอดี */
+/* จัด radio และ checkbox ให้เท่ากับ input */
 .compact-radio,
 .compact-checkbox {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 20px;
-  align-items: flex-start;
+  gap: 15px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .compact-radio label,
 .compact-checkbox label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   font-size: 16px;
-  flex: 0 1 250px;
+  font-weight: normal;
+}
+
+.compact-radio label input,
+.compact-checkbox label input {
+  flex-shrink: 0;
 }
 
 button {
@@ -86,6 +93,7 @@ button {
 button:hover {
   background-color: #42a5f5;
 }
+
   </style>
 </head>
 <body>
