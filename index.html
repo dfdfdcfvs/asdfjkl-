@@ -35,8 +35,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 995px;
-  width: 100%;
 }
 
 .form-group label {
@@ -55,25 +53,22 @@ h1 {
   box-sizing: border-box;
 }
 
+/* จัด radio และ checkbox ให้แนวนอนและระยะพอดี */
 .compact-radio,
 .compact-checkbox {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: flex-start;
 }
 
 .compact-radio label,
 .compact-checkbox label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 16px;
-}
-
-.compact-radio label input,
-.compact-checkbox label input {
-  flex-shrink: 0;
+  flex: 0 1 250px;
 }
 
 button {
@@ -91,7 +86,6 @@ button {
 button:hover {
   background-color: #42a5f5;
 }
-
   </style>
 </head>
 <body>
