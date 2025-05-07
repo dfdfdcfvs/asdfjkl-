@@ -49,7 +49,7 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #f9f9f9;
-  max-width: 800px;
+  max-width: 995px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -111,15 +111,13 @@ button:hover {
 <input type="date" id="survey_date" name="entry.1955342692" required>
 <label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
 <input type="time" id="survey_time" name="entry.1442653207" required>
-</div>
+
 <!-- ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร -->
 <h3>ส่วนที่ 1 ข้อมูลทั่วไปของอาคาร</h3>
-<div class="form-group">
 <label for="building_name">ชื่ออาคาร</label>
 <input type="text" id="building_name" name="entry.892403623" >
 <label for="owner">เจ้าของ</label>
 <input type="text" id="owner" name="entry.1978401763" >
-</div>
        
 <label>เจ้าของกรรมสิทธิ์</label>
 <div class="compact-radio">
@@ -191,7 +189,6 @@ button:hover {
 </script>
 
 <h3>ที่ตั้งอาคาร</h3>
-<div class="form-group">
 <label for="address-no">เลขที่</label>
 <input type="text" id="address-no" name="entry.303185528"  placeholder="เช่น 123/4">
 <label for="moo">หมู่ที่</label>
@@ -212,18 +209,15 @@ button:hover {
 <input type="text" id="lat" name="entry.2026602850" placeholder="เช่น 14.9791">
 <label for="lng">ลองจิจูด (Longitude)</label>
 <input type="text" id="lng" name="entry.1426828966" placeholder="เช่น 102.0978">
-</div>
 
 <!-- ส่วนที่ 2 ข้อมูลทางกายภาพของอาคาร -->
 <h3>ส่วนที่ 2 ข้อมูลทางกายภาพของอาคาร</h3>
-<div class="form-group">
 <label for="floors_above_ground">จำนวนชั้น เหนือพื้นดิน</label>
 <input type="text" id="floors_above_ground" name="entry.89303826" >
 <label for="floors_below_ground">จำนวนชั้น ชั้นใต้ดิน</label>
 <input type="text" id="floors_below_ground" name="entry.2103485716" >
 <label for="building_area">พื้นที่อาคาร (ประมาณ) ตร.ม.</label>
 <input type="text" id="building_area" name="entry.488624598" >
-</div>
           
 <label for="surrounding_condition">สภาพโดยรอบอาคาร (เลือกได้มากกว่า 1 ข้อ)</label>
 <div class="compact-checkbox" id="surrounding_condition">
@@ -1092,10 +1086,9 @@ function toggleRoofMaterialDamageFields() {
 
 <!-- ส่วนที่ 7 ความเสียหายของระบบไฟฟ้าและระบบอื่นๆ --> 
 <h3>ส่วนที่ 7 ความเสียหายของระบบไฟฟ้าและระบบอื่นๆ</h3>
-<div class="form-group">
 <label for="electric_system_damage">ความเสียหายของระบบไฟฟ้าและระบบอื่นๆ(ข้อสังเกต)</label>
 <input type="text" id="electric_system_damage" name="entry.604310751" >
-</div>
+
 <!-- ส่วนที่ 8 สรุปผลการประเมินความเสียหายที่มีผลต่อการใช้งานอาคาร --> 
 <h3>ส่วนที่ 8 สรุปผลการประเมินความเสียหายที่มีผลต่อการใช้งานอาคาร</h3>
 <strong>สรุปผลการประเมินความเสียหายที่มีผลต่อการใช้งานอาคาร</strong>
@@ -1145,13 +1138,12 @@ function toggleOtherAdviceFields() {
 }
 </script>
 
-   <div class="form-group">
+
     <label for="survey_completion_time">เวลาสำรวจแล้วเสร็จ</label>
     <input type="time" name="entry.1656273013" required>
-   </div>
+
 <!-- ส่วนที่ 9 ข้อมูลผู้สำรวจ -->
 <h3>ส่วนที่ 9 ข้อมูลผู้สำรวจ</h3>
-<div class="form-group">
 <label for="investigator_name_1">ชื่อผู้สำรวจ #1</label>
 <input type="text" id="investigator_name_1" name="entry.502935266" >
 <label for="investigator_organization_1">หน่วยงาน #1</label>
