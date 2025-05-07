@@ -58,10 +58,8 @@ h1 {
 .compact-radio,
 .compact-checkbox {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  max-width: 800px;
-  width: 100%;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .compact-radio label,
@@ -69,8 +67,8 @@ h1 {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 16px;
-  font-weight: normal;
+  font-weight: normal; /* ไม่เน้นข้อความ */
+  white-space: nowrap;
 }
 
 .compact-radio label input,
