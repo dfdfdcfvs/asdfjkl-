@@ -35,6 +35,8 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 995px;
+  width: 100%;
 }
 
 .form-group label {
@@ -49,17 +51,15 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #f9f9f9;
-  max-width: 995px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* จัด radio และ checkbox ให้เท่ากับ input */
 .compact-radio,
 .compact-checkbox {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  gap: 5px;
   width: 100%;
 }
 
@@ -68,11 +68,9 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-left: 10px;
   font-size: 16px;
 }
 
-/* ให้ radio button อยู่ในกล่องที่กว้างเท่า input */
 .compact-radio label input,
 .compact-checkbox label input {
   flex-shrink: 0;
