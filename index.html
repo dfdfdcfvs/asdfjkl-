@@ -30,22 +30,16 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* กลุ่มคำถาม */
 .form-group {
   margin-bottom: 15px;
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
-/* ตั้งขนาดของ Label และ Input ให้สม่ำเสมอ */
 .form-group label {
   font-weight: bold;
   font-size: 16px;
-  min-width: 150px; /* ปรับความกว้างของ label ตามต้องการ */
-  flex-shrink: 0;
-  text-align: left;
 }
 
 .form-group input,
@@ -55,37 +49,35 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #f9f9f9;
-  max-width: 800px; /* จำกัดขนาดให้ดูสมดุล */
+  max-width: 995px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Radio และ Checkbox */
+/* จัด radio และ checkbox ให้เท่ากับ input */
 .compact-radio,
 .compact-checkbox {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  align-items: flex-start;
-  padding-left: 150px; /* เว้นระยะเท่ากับ label */
+  align-items: flex-start; /* ชิดซ้าย */
 }
 
 .compact-radio label,
 .compact-checkbox label {
   display: flex;
-  align-items: center;
+  align-items: center; /* จัดตำแหน่งให้อยู่กลางทั้งแนวตั้ง */
   gap: 5px;
-  font-weight: normal;
+  font-weight: normal; /* ไม่เน้นข้อความ */
   white-space: nowrap;
 }
 
-/* Radio และ Checkbox อยู่ใกล้กัน แต่ข้อความเรียงแถวแนวนอน */
 .compact-radio label input,
 .compact-checkbox label input {
   flex-shrink: 0;
+  margin-right: 5px; /* เพิ่มช่องว่างระหว่าง input กับข้อความ */
 }
 
-/* ปุ่มส่งฟอร์ม */
 button {
   padding: 12px 20px;
   background-color: #64b5f6;
