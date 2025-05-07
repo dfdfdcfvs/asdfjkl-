@@ -1180,31 +1180,44 @@ function toggleOtherAdviceFields() {
 <input type="text" id="survey_leader_phone" name="entry.422090311" >
 </div>
           
-      <button type="submit">ส่งข้อมูล</button>
-    </form>
+  <button type="submit">ส่งข้อมูล</button>
+</form>
 
-    <div class="confirmation" id="confirmation-message">
-      ✅ ขอบคุณสำหรับการกรอกข้อมูล!
-    </div>
+<div class="confirmation" id="confirmation-message" style="display:none;">
+  ✅ ขอบคุณสำหรับการกรอกข้อมูล!
+</div>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="iframeLoaded()"></iframe>
-  </div>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="iframeLoaded()"></iframe>
 
-  <script>
-    function iframeLoaded() {
-      const form = document.getElementById('survey-form');
-      const confirm = document.getElementById('confirmation-message');
+<script>
+  function iframeLoaded() {
+    const form = document.getElementById('survey-form');
+    const confirm = document.getElementById('confirmation-message');
 
-      if (form.dataset.submitted === "true") {
-        confirm.style.display = 'block';
-        form.reset();
-        form.dataset.submitted = "false";
-      }
+    if (form.dataset.submitted === "true") {
+      // Show popup after form submission
+      alert("✅ ขอบคุณสำหรับการกรอกข้อมูล!"); // หรือสามารถใช้ modal ได้
+
+      // Reset form
+      form.reset();
+      form.dataset.submitted = "false"; // Reset submission flag
     }
+  }
 
-    document.getElementById('survey-form').addEventListener('submit', function () {
-      this.dataset.submitted = "true";
-    });
-  </script>
+  document.getElementById('survey-form').addEventListener('submit', function (event) {
+    // Prevent form from submitting immediately
+    event.preventDefault();
+
+    // Change the flag to indicate form has been submitted
+    this.dataset.submitted = "true";
+
+    // Fake iframe submission to trigger onload event
+    document.getElementById('hidden_iframe').src = "about:blank";  // Ensure the iframe is loaded and triggers onload
+    setTimeout(function() {
+      // Simulate the form submission process, you can submit the form here using JavaScript if needed
+      document.getElementById('hidden_iframe').src = "your-form-handler-url";  // Replace with your form action URL
+    }, 100);
+  });
+</script>
 </body>
 </html>
