@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-  max-width: 1000px; /* เพิ่มความกว้าง */
+  max-width: 1000px;
   margin: 30px auto;
   padding: 30px;
   background-color: white;
@@ -34,12 +34,12 @@ h1 {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* ระยะห่างระหว่างคำถามและตัวเลือก */
+  gap: 8px;
 }
 
 .form-group label {
   font-weight: bold;
-  margin-bottom: 5px; /* ระยะห่างระหว่างคำถามกับ input */
+  font-size: 16px;
 }
 
 .form-group input,
@@ -49,33 +49,33 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   background: #f9f9f9;
-  max-width: 900px; /* กำหนดความกว้างสูงสุดของ input */
+  max-width: 800px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-/* จัดการคำถามประเภท radio และ checkbox ให้อยู่ในกล่อง */
+/* จัด radio และ checkbox ให้เท่ากับ input */
 .compact-radio,
 .compact-checkbox {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* ระยะห่างระหว่างตัวเลือก */
-  max-width: 800px; /* จำกัดความกว้าง */
+  max-width: 800px;
+  width: 100%;
 }
 
 .compact-radio label,
 .compact-checkbox label {
   display: flex;
   align-items: center;
-  gap: 10px; /* ระยะห่างระหว่างกล่องเลือกกับข้อความ */
-  padding-left: 20px;
+  gap: 10px;
+  padding-left: 10px;
+  font-size: 16px;
 }
 
-/* ให้ทุกคำถามขนาดเท่ากัน */
-.compact-radio label,
-.compact-checkbox label,
-.form-group label {
-  font-size: 16px;
-  line-height: 1.5;
+/* ให้ radio button อยู่ในกล่องที่กว้างเท่า input */
+.compact-radio label input,
+.compact-checkbox label input {
+  flex-shrink: 0;
 }
 
 button {
